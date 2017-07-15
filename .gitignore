@@ -1,0 +1,13 @@
+# Special folders (deployment, runtime data etc.)
+
+# Visual Studio / .NET Core generic
+node_modules/
+.vs/
+obj/
+bin/
+project.lock.json
+*.user
+/*.tar.gz
+
+# Frontend project
+src-front/dist
