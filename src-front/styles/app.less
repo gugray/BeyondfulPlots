@@ -1,0 +1,51 @@
+@fntBaseFamily: "Open Sans", sans-serif;
+@fntBaseSize: 11pt;
+@clrText: #404040;
+@clrA: #db4000;
+@clrB: #1365ba;
+@leftWidth: 20rem;
+
+* { margin: 0; padding: 0; border: 0; outline: none; }
+div, p, h1, h2, h3, ul, ol, blockquote {
+  position: relative; float: left; box-sizing: border-box; width: 100%;
+  height: auto; overflow-y: auto;
+}
+
+body {
+  position: relative; width: 100%; height: 100%; overflow: hidden; box-sizing: border-box;
+  background-color: white; color: @clrText;
+  font-family: @fntBaseFamily; font-size: @fntBaseSize;
+}
+
+.header { 
+  height: 3.5rem; margin-bottom: 2rem;
+  .hdr-beyondful { 
+    position: absolute; width: @leftWidth; text-align: right; height: 3.5rem; left: 0; top: 0;
+    font-size: 22pt; font-weight: 600; color: @clrA;
+    border-top: 3pt solid @clrB; border-bottom: 3pt solid transparent;
+  }
+  .hdr-stretch { 
+    width: 100%; position: absolute; padding-left: @leftWidth; height: 3.5rem; left: 0; top: 0;
+  }
+  .hdr-plots { 
+    font-size: 22pt; font-weight: 600; width: 100%;
+    border-bottom: 3pt solid @clrA; border-top: 3pt solid transparent;
+  }
+  .hdr-plots-brand { width: auto; color: @clrB; }
+  .hdr-welcome {
+    font-size: @fntBaseSize; width: auto;
+    margin-left: 3rem; padding-top: 0.7rem; font-weight: 400;
+    .userName { font-weight: 600; }
+  }
+  .hdr-signout {
+    display: block; position: relative; float: right; width: auto; margin: 0.3rem 1rem; cursor: default;
+    &:hover { color: lighten(@clrText, 30%); }
+  }
+}
+
+.content { padding-left: @leftWidth; }
+
+canvas {
+  display: block; position: relative; float: left; width: 600px; height: 200px;
+  background-color: white; background-color: #f8f8f8;
+}
