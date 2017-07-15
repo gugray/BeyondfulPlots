@@ -7,5 +7,7 @@ namespace BeyondfulServer
 {
     public class IndexModel
     {
+        public bool LoggedIn;
+        public bool HasPlugin;
     }
 }

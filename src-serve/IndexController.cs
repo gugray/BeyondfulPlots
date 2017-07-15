@@ -6,7 +6,12 @@ namespace BeyondfulServer
     {
         public IActionResult Index(string paras)
         {
-            IndexModel model = new IndexModel();
+            string userName = Request.Cookies["username"];
+            IndexModel model = new IndexModel
+            {
+                LoggedIn = userName != null,
+                HasPlugin = userName == "gauss" || userName == "erdos"
+            };
             return View("/Index.cshtml", model);
         }
     }

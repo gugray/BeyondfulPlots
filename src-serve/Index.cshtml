@@ -7,10 +7,50 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>beyondful plots</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600|Bree+Serif" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="~/public.css" />
 </head>
 <body>
-  <div id="app"></div>
-  <script src="/sdk-bundle.js"></script>
-  <script src="/pluginx-bundle.js"></script>
-  <script src="/app-bundle.js"></script></body>
+
+  @if (Model.LoggedIn)
+  {
+      <div id="app"></div>
+      <script src="~/jquery-3.1.1.min.js"></script>
+      @if (Model.HasPlugin)
+      {
+          <script src="~/sdk-bundle.js"></script>
+          <script src="~/pluginx-bundle.js"></script>
+      }
+      <script src="~/app-bundle.js"></script>
+  }
+  else
+  {
+      <div class="header">
+        <div class="hdr-beyondful">beyondful</div>
+        <div class="hdr-stretch">
+          <div class="hdr-plots">plots</div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="content">
+          <h2>Log in as:</h2>
+          <div class="users">
+            <div class="user" data-username="euler">
+              <i class="fa fa-user-o" aria-hidden="true"></i> &nbsp; Euler
+            </div>
+            <div class="user" data-username="gauss">
+              <i class="fa fa-user-o" aria-hidden="true"></i> &nbsp; Gauss
+            </div>
+            <div class="user" data-username="erdos">
+              <i class="fa fa-user-o" aria-hidden="true"></i> &nbsp; Erdos
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="~/jquery-3.1.1.min.js"></script>
+      <script src="~/public.js"></script>
+  }
+</body>
+
 </html>
