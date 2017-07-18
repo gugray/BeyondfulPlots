@@ -3,8 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: './index.js',
-    pluginfx: './pluginfx/plugininit.js'
+    ext01: './main.js'
   },
 
   output: {

@@ -1,4 +1,4 @@
-import { IPluginRegistry } from './ifaces/IPluginRegistry'
+import { IPluginRegistry } from '../ifaces/IPluginRegistry'
 
 class PluginRegistry extends IPluginRegistry {
   constructor() {

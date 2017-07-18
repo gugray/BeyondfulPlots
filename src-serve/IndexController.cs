@@ -10,7 +10,7 @@ namespace BeyondfulServer
             IndexModel model = new IndexModel
             {
                 LoggedIn = userName != null,
-                HasPlugin = userName == "gauss" || userName == "erdos"
+                HasPlugin = userName == "Gauss"
             };
             return View("/Index.cshtml", model);
         }
