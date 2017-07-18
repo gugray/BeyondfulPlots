@@ -3,9 +3,8 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: './index.js',
-    sdk: "./sdk/sdk.js",
-    pluginx: './pluginx/main.js'
+    app: './index.js'
+    //default_plotters: './plotters/DefaultPlotters.js'
   },
 
   output: {

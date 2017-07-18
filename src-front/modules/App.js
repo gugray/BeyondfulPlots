@@ -1,21 +1,20 @@
 import React from 'react'
 import Cookies from 'universal-cookie'
-import PluginRegistry from '../sdk/PluginRegistry'
 import Plot from './Plot'
-import Scissor from './Scissor'
-import ScissorCreator from './Scissor'
+import PlotterBox from './PlotterBox'
 
-export default React.createClass({
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    // var msg = "";
-    // for (var i = 0; i != window.PluginRegistry.texts.length; ++i) {
-    //   if (msg.length > 0) msg += " ";
-    //   msg += window.PluginRegistry.texts[i];
-    // }
-    // msg += "!";
     const cookies = new Cookies();
     var username = cookies.get("username", { path: '/' });
     if (username === undefined) username = "sailor";
+
+    var plugins = window.PluginRegistry.getControlsForContext("PlotterStgs");
+
     return (
       <div>
         <div className="header">
@@ -30,20 +29,23 @@ export default React.createClass({
         </div>
         <div className="content">
           <Plot />
+          <div className="plotters">
+            {plugins.map(function (plugin, ix) {
+              return <PlotterBox key={ix} stgsCtrl={plugin.ctrl} pluginid={plugin.pluginid} />
+            })}
+          </div>
+          <div className="menu">
+          </div>
         </div>
       </div>
     )
-  },
+  }
 
   onLogoutClick() {
     const cookies = new Cookies();
     cookies.remove('username', { path: '/' });
     location.reload();
   }
-})
+}
 
-{/* <Scissor />
-{window.PluginRegistry.comps.map(function (comp, ix) {
-  var x = new comp({ index: ix, key: ix });
-  return x.render();
-})} */}
+export default App;
