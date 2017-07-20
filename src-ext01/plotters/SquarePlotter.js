@@ -1,7 +1,7 @@
 import { SquarePlotterStgsCtrl } from './SquarePlotterStgsCtrl'
-import { Plugin } from '../ifaces/Plugin.js'
+import { Plotter } from '../ifaces/Plotter.js'
 
-export class SquarePlotter extends Plugin {
+export class SquarePlotter extends Plotter {
   constructor() {
     super("squareplotter");
   }

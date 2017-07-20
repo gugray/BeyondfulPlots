@@ -10,8 +10,8 @@ class PlotterLibrary extends IPlotterLibrary {
   }
 
   registerPlotter(plotter) {
-    //console.log(plugin);
-    this._plotters.push(plotter); 
+    this._plotters.push(plotter);
+    this._plotters.sort((x, y) => { return x.plotterid.localeCompare(y.plotterid); });
   }
 
   getControlsForContext(context) {
