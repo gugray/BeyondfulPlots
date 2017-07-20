@@ -1,7 +1,7 @@
 import { SinePlotterStgsCtrl } from './SinePlotterStgsCtrl'
-import { Plugin } from '../ifaces/Plugin.js'
+import { Plotter } from '../ifaces/Plotter.js'
 
-export class SinePlotter extends Plugin {
+export class SinePlotter extends Plotter {
   constructor() {
     super("sineplotter");
   }

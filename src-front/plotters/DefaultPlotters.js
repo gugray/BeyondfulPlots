@@ -1,6 +1,6 @@
 import { SinePlotter } from "./SinePlotter"
 
 export default function registerDefaultPlotters() {
-  window.PluginRegistry.registerPlugin(new SinePlotter());
+  window.PlotterLibrary.registerPlotter(new SinePlotter());
 }
 

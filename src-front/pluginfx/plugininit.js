@@ -1,1 +1,1 @@
-import PluginRegistry from './PluginRegistry'
+import PlotterLibrary from './PlotterLibrary'

@@ -13,7 +13,7 @@ class App extends React.Component {
     var username = cookies.get("username", { path: '/' });
     if (username === undefined) username = "sailor";
 
-    var plugins = window.PluginRegistry.getControlsForContext("PlotterStgs");
+    var plotters = window.PlotterLibrary.getControlsForContext("PlotterStgs");
 
     return (
       <div>
@@ -30,8 +30,8 @@ class App extends React.Component {
         <div className="content">
           <Plot />
           <div className="plotters">
-            {plugins.map(function (plugin, ix) {
-              return <PlotterBox key={ix} stgsCtrl={plugin.ctrl} pluginid={plugin.pluginid} />
+            {plotters.map(function (plotter, ix) {
+              return <PlotterBox key={ix} stgsCtrl={plotter.ctrl} pluginid={plotter.plotterid} />
             })}
           </div>
           <div className="menu">
