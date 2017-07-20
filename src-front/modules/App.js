@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Cookies from 'universal-cookie'
 import Plot from './Plot'
 import PlotterBox from './PlotterBox'
-import MarkupModal from './MarkupModal'
+import Command from './Command'
 import AppData from '../logic/AppData'
 
 class App extends React.Component {
@@ -20,6 +20,7 @@ class App extends React.Component {
     if (username === undefined) username = "sailor";
 
     var plotters = window.PlotterLibrary.getControlsForContext("PlotterStgs");
+    var commands = window.CommandManager.getCommands();
     var self = this;
 
     return (
@@ -50,8 +51,9 @@ class App extends React.Component {
           </div>
           <div className="menu">
             <h2>Commands</h2>
-            <div className="command" onClick={this.onShowMarkup}>Show markup</div>
-            <div className="command" onClick={this.onShowMarkup}>Somethig else</div>
+            {commands.map(function (cmd, ix) {
+              return <Command key={ix} text={cmd.text} fun={cmd.fun} />
+            })}
           </div>
           <div id="popupHost"></div>
         </div>
