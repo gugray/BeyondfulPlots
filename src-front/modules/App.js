@@ -2,10 +2,13 @@ import React from 'react'
 import Cookies from 'universal-cookie'
 import Plot from './Plot'
 import PlotterBox from './PlotterBox'
+import AppData from '../logic/AppData'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.onLogoutClick = this.onLogoutClick.bind(this);
+    this.onDataChanged = this.onDataChanged.bind(this);
   }
 
   render() {
@@ -14,6 +17,7 @@ class App extends React.Component {
     if (username === undefined) username = "sailor";
 
     var plotters = window.PlotterLibrary.getControlsForContext("PlotterStgs");
+    var self = this;
 
     return (
       <div>
@@ -28,10 +32,17 @@ class App extends React.Component {
           </div>
         </div>
         <div className="content">
-          <Plot />
+          <Plot funs={this.props.data.getEnabledItems()} />
           <div className="plotters">
+            <h2>Plotters</h2>
             {plotters.map(function (plotter, ix) {
-              return <PlotterBox key={ix} stgsCtrl={plotter.ctrl} pluginid={plotter.plotterid} />
+              var enabled = self.props.data.isEnabled(plotter.plotterid);
+              var plotParams = self.props.data.getParams(plotter.plotterid);
+              if (!plotParams) plotParams = window.PlotterLibrary.getDefaultParams(plotter.plotterid);
+              return <PlotterBox
+                key={ix} stgsCtrl={plotter.ctrl} plotterid={plotter.plotterid}
+                enabled={enabled} plotParams={plotParams} onDataChanged={self.onDataChanged}
+              />
             })}
           </div>
           <div className="menu">
@@ -45,6 +56,11 @@ class App extends React.Component {
     const cookies = new Cookies();
     cookies.remove('username', { path: '/' });
     location.reload();
+  }
+
+  onDataChanged(plotterid, enabled, params) {
+    window.AppData.setPlotData(plotterid, enabled, params);
+    this.forceUpdate();
   }
 }
 

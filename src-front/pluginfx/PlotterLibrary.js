@@ -3,7 +3,7 @@ import { IPlotterLibrary } from '../ifaces/IPlotterLibrary'
 class PlotterLibrary extends IPlotterLibrary {
   constructor() {
     super();
-    this._plotter = [];
+    this._plotters = [];
     if (!window.PlotterLibrary) {
       window.PlotterLibrary = this;
     }
@@ -11,19 +11,43 @@ class PlotterLibrary extends IPlotterLibrary {
 
   registerPlotter(plotter) {
     //console.log(plugin);
-    this._plotter.push(plotter); 
+    this._plotters.push(plotter); 
   }
 
   getControlsForContext(context) {
     var res = [];
-    for (var i = 0; i != this._plotter.length; ++i) {
-      var ctrl = this._plotter[i].getControlForContext(context);
+    for (var i = 0; i != this._plotters.length; ++i) {
+      var ctrl = this._plotters[i].getControlForContext(context);
       if (ctrl) res.push({
-        pluginid: this._plotter[i].pluginid,
+        plotterid: this._plotters[i].plotterid,
         ctrl: ctrl
       });
     }
     return res;
+  }
+
+  getDefaultParams(plotterid) {
+    for (var i = 0; i != this._plotters.length; ++i) {
+      if (this._plotters[i].plotterid != plotterid) continue;
+      return this._plotters[i].getDefaultParams();
+    }
+  }
+
+  getColor(plotterid) {
+    for (var i = 0; i != this._plotters.length; ++i) {
+      if (this._plotters[i].plotterid != plotterid) continue;
+      return this._plotters[i].getColor();
+    }    
+  }
+
+  getFunAndColor(plotterid, params) {
+    for (var i = 0; i != this._plotters.length; ++i) {
+      if (this._plotters[i].plotterid != plotterid) continue;
+      return {
+        fun: this._plotters[i].getFunction(params),
+        color: this._plotters[i].getColor()
+      }
+    }
   }
 }
 

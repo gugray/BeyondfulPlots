@@ -11,5 +11,18 @@ export class SquarePlotter extends Plugin {
       return SquarePlotterStgsCtrl;
     }
   }
+
+  getDefaultParams() {
+    return { a: 1, b: 1 };
+  }
+
+  getFunction(params) {
+    var fun = function(x) {
+      return (x*params.a) * (x*params.a) * params.b;
+    };
+    return fun;
+  }
+
+  getColor() { return "#b200ff"; }
 }
 

@@ -11,5 +11,18 @@ export class SinePlotter extends Plotter {
       return SinePlotterStgsCtrl;
     }
   }
+
+  getDefaultParams() {
+    return { a: 1 };
+  }
+
+  getFunction(params) {
+    var fun = function(x) {
+      return Math.sin(x * Math.PI * params.a);
+    };
+    return fun;
+  }
+
+  getColor() { return "#ff0000"; }
 }
 

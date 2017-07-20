@@ -55,8 +55,16 @@ canvas {
   clear: left; margin-right: 1rem;
   .plotterBox {
      border: 1pt solid #d0d0d0; background-color: #f8f8f8; margin-bottom: 0.5rem;
-     .left { width: 2rem; border-right: 1pt solid #d0d0d0; text-align: center; }
-     .right { width: auto; padding: 0 0.4rem; }
+     .left { width: 2rem; text-align: center; }
+     .right { width: 17.8rem; border-left: 1pt solid #d0d0d0; padding: 0 0.4rem; }
+  }
+  .pluginTitle { font-weight: bold; border-bottom: 1pt solid #d0d0d0; width: 100%; }
+  .pluginParams {
+    font-style: italic; padding: 0.5rem 0;
+    input {
+      background-color: lighten(@clrB, 53%); width: 4rem; border-radius: 0.2rem;
+      padding: 0.2rem; text-align: center; margin: 0 0.2rem;
+    }
   }
 }
 
