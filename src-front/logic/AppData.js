@@ -61,6 +61,10 @@ class AppData extends IAppData {
     }
     return res;
   }
+
+  getAsJSON() {
+    return JSON.stringify(this._data, null, 2);
+  }
 }
 
 export default new AppData();

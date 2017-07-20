@@ -1,7 +1,9 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import Cookies from 'universal-cookie'
 import Plot from './Plot'
 import PlotterBox from './PlotterBox'
+import MarkupModal from './MarkupModal'
 import AppData from '../logic/AppData'
 
 class App extends React.Component {
@@ -9,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.onLogoutClick = this.onLogoutClick.bind(this);
     this.onDataChanged = this.onDataChanged.bind(this);
+    this.onShowMarkup = this.onShowMarkup.bind(this);
   }
 
   render() {
@@ -46,7 +49,11 @@ class App extends React.Component {
             })}
           </div>
           <div className="menu">
+            <h2>Commands</h2>
+            <div className="command" onClick={this.onShowMarkup}>Show markup</div>
+            <div className="command" onClick={this.onShowMarkup}>Somethig else</div>
           </div>
+          <div id="popupHost"></div>
         </div>
       </div>
     )
@@ -61,6 +68,12 @@ class App extends React.Component {
   onDataChanged(plotterid, enabled, params) {
     window.AppData.setPlotData(plotterid, enabled, params);
     this.forceUpdate();
+  }
+
+  onShowMarkup(plotterid, enabled, params) {
+    ReactDOM.render(
+      <MarkupModal title="Plotted data as markup" content={this.props.data.getAsJSON()} />
+    , document.getElementById('popupHost'));
   }
 }
 
